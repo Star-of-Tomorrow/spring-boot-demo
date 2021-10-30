@@ -34,7 +34,7 @@ public class User extends AbstractEntity implements Serializable {
     String userName;
 
     @ApiModelProperty(value = "用户头像", required = true)
-    String picUrl;
+    String userPicUrl;
 
     @ApiModelProperty(value = "用户类型", required = true)
     String type;

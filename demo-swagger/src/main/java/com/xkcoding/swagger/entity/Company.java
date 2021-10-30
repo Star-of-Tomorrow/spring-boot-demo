@@ -11,10 +11,8 @@ import lombok.experimental.FieldDefaults;
  * @author:maidang
  * @date:2021/10/30
  **/
-@NoArgsConstructor
-@AllArgsConstructor
 @ApiModel(value = "机构实体", description = "User Entity")
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class company extends User{
+public class Company extends User{
 
 }
