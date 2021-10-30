@@ -20,21 +20,23 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "用户实体", description = "User Entity")
-public class User implements Serializable {
+public class User extends AbstractEntity implements Serializable {
+
     private static final long serialVersionUID = 5057954049311281252L;
-    /**
-     * 主键id
-     */
-    @ApiModelProperty(value = "主键id", required = true)
-    private Integer id;
-    /**
-     * 用户名
-     */
-    @ApiModelProperty(value = "用户名", required = true)
-    private String name;
-    /**
-     * 工作岗位
-     */
-    @ApiModelProperty(value = "工作岗位", required = true)
-    private String job;
+
+    @ApiModelProperty(value = "用户账号", required = true)
+    String account;
+
+    @ApiModelProperty(value = "用户密码", required = true)
+    String password;
+
+    @ApiModelProperty(value = "用户名字", required = true)
+    String userName;
+
+    @ApiModelProperty(value = "用户头像", required = true)
+    String picUrl;
+
+    @ApiModelProperty(value = "用户类型", required = true)
+    String type;
 }
+

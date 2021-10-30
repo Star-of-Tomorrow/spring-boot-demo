@@ -28,30 +28,31 @@ import java.util.List;
 @Slf4j
 public class UserController {
     @GetMapping
-    @ApiOperation(value = "条件查询（DONE）", notes = "备注")
-    @ApiImplicitParams({@ApiImplicitParam(name = "username", value = "用户名", dataType = DataType.STRING, paramType = ParamType.QUERY, defaultValue = "xxx")})
-    public ApiResponse<User> getByUserName(String username) {
-        log.info("多个参数用  @ApiImplicitParams");
-        return ApiResponse.<User>builder().code(200).message("操作成功").data(new User(1, username, "JAVA")).build();
+    @ApiOperation(value = "用户登录", notes = "备注")
+    @ApiImplicitParams({@ApiImplicitParam(name = "account", value = "用户名", dataType = DataType.STRING, paramType = ParamType.QUERY, defaultValue = "xxx"),@ApiImplicitParam(name = "password", value = "用户密码", dataType = DataType.STRING, paramType = ParamType.QUERY, defaultValue = "xxx")})
+    public ApiResponse<User> login(String account,String password) {
+        return ApiResponse.<User>builder().code(200).message("操作成功").data(new User()).build();
     }
 
-    @GetMapping("/{id}")
-    @ApiOperation(value = "主键查询（DONE）", notes = "备注")
+    @GetMapping("/{userId}")
+    @ApiOperation(value = "用户信息查询（DONE）", notes = "用户主键")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH)})
-    public ApiResponse<User> get(@PathVariable Integer id) {
+    public ApiResponse<User> get(@PathVariable String userId) {
         log.info("单个参数用  @ApiImplicitParam");
-        return ApiResponse.<User>builder().code(200).message("操作成功").data(new User(id, "u1", "p1")).build();
+        return ApiResponse.<User>builder().code(200).message("操作成功").data(new User()).build();
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "删除用户（DONE）", notes = "备注")
+    @ApiOperation(value = "用户注销", notes = "备注")
     @ApiImplicitParam(name = "id", value = "用户编号", dataType = DataType.INT, paramType = ParamType.PATH)
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable String userId) {
         log.info("单个参数用 ApiImplicitParam");
     }
 
+
+
     @PostMapping
-    @ApiOperation(value = "添加用户（DONE）")
+    @ApiOperation(value = "用户登录")
     public User post(@RequestBody User user) {
         log.info("如果是 POST PUT 这种带 @RequestBody 的可以不用写 @ApiImplicitParam");
         return user;
@@ -85,5 +86,11 @@ public class UserController {
         log.info(file.getName());
         log.info(file.getOriginalFilename());
         return file.getOriginalFilename();
+    }
+
+    @PostMapping
+    @ApiOperation(value = "用户登录")
+    public void 登录(){
+
     }
 }
